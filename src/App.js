@@ -1,6 +1,7 @@
 import {Navbar, NavbarBrand} from 'reactstrap';
 import React, { Component } from 'react';
 import Menu from './components/MenuComponent';
+import {dishes} from './shared/dishes';
 
 
 class App extends Component{
@@ -12,7 +13,7 @@ class App extends Component{
               <NavbarBrand>CodeFry</NavbarBrand>
             </div>
           </Navbar>
-          <Menu />
+          <Menu dishes={dishes} />
       </div>
     );
   }
