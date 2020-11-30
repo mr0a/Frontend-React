@@ -4,13 +4,13 @@ import { Card, CardBody, CardImg, CardText, CardTitle } from 'reactstrap';
 
 class DishDetail extends Component {
 
-    comments(comments){
+    renderComments(comments){
+        const options = { year:'numeric', month: 'short', day: '2-digit' }
         if (comments != null){
             return comments.map(comment => (
                     <ul key={comment.id} className="list-unstyled">
                         <li>{comment.comment}</li>
-                        <li>--- {comment.author}</li>
-                        <li>{comment.date}</li>
+                        <li>-- {comment.author}, {new Intl.DateTimeFormat('en-IN', options).format(new Date(Date.parse(comment.date)))}</li>
                     </ul>
             ))
         }else{
@@ -22,22 +22,28 @@ class DishDetail extends Component {
 
     render() {
         const dish = this.props.dish;
-        return (
-            <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                    <Card>
-                        <CardImg src={dish.image} alt={dish.name} />
-                        <CardBody>
-                            <CardTitle>{dish.name}</CardTitle>
-                            <CardText>{dish.description}</CardText>
-                        </CardBody>
-                    </Card>
+        if (dish != null){
+            return (
+                <div className="row">
+                    <div className="col-12 col-md-5 m-1">
+                        <Card>
+                            <CardImg src={dish.image} alt={dish.name} />
+                            <CardBody>
+                                <CardTitle>{dish.name}</CardTitle>
+                                <CardText>{dish.description}</CardText>
+                            </CardBody>
+                        </Card>
+                    </div>
+                    <div className="col-12 col-md-5 m-1">
+                        {this.renderComments(dish.comments)}
+                    </div>
                 </div>
-                <div className="col-12 col-md-5 m-1">
-                    {this.comments(dish.comments)}
-                </div>
-            </div>
-        );
+            );
+        }else{
+            return (
+                <div></div>
+            );
+        }
     }
 }
 
