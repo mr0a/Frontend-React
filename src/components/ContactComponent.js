@@ -1,9 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
 
 export default function Contact(props) {
     return (
         <div className="container">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="home">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Contact</BreadcrumbItem>
+                </Breadcrumb>
             <div className="row row-content">
                 <div className="col-12">
                     <h2>Contact Us</h2> <hr/><br/><br/>
@@ -11,9 +17,9 @@ export default function Contact(props) {
                 <div className="col-12">
                     <h3>Location Information</h3>
                 </div>
-                <div className="col-12 col-sm-4 offset-sm-1">
+                <div className="col-12 col-sm-5 offset-sm-1">
                     <h5>Our Address</h5>
-                    <address className="address" style={{'font-size':'100%'}}>
+                    <address className="address" style={{'fontSize':'100%'}}>
 		              121, Clear Water Bay Road<br/>
 		              Clear Water Bay, Kowloon<br/>
 		              HONG KONG<br/>
@@ -22,7 +28,7 @@ export default function Contact(props) {
 		              <i className="fa fa-envelope fa-lg"></i> : <a href="mailto:confusion@food.net">confusion@food.net</a>
 		           </address>
                 </div>
-                <div className="col-12 col-sm-6 offset-sm-1">
+                <div className="col-12 col-sm-5 offset-sm-1">
                     <h5>Map of our location</h5>
                 </div>
                 <div className="col-12 col-sm-11 offset-sm-1 mt-4">

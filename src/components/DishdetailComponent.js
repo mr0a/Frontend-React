@@ -1,11 +1,12 @@
 import React from 'react';
-import { Card, CardBody, CardImg, CardText, CardTitle } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardImg, CardText, CardTitle } from 'reactstrap';
 
 
     const RenderCard = ({dish}) => {
         return (
             <Card>
-                <CardImg src={dish.image} alt={dish.name} />
+                <CardImg width="100%" src={dish.image} alt={dish.name} />
                 <CardBody>
                     <CardTitle>{dish.name}</CardTitle>
                     <CardText>{dish.description}</CardText>
@@ -30,21 +31,32 @@ import { Card, CardBody, CardImg, CardText, CardTitle } from 'reactstrap';
         }
     }
 
-    const DishDetail =  ({dish}) => {
+    const DishDetail =  ({dish, comment}) => {
         if (dish != null){
             return (
-                <div className="row">
-                    <div className="col-12 col-md-5 m-1">
-                        <RenderCard dish={dish} />
-                    </div>
-                    <div className="col-12 col-md-5 m-1">
-                        <RenderComments comments={dish.comments} />
+                <div className="container">
+                    <div className="row">
+                        <Breadcrumb>
+                            <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
+                            <BreadcrumbItem><Link to='/menu'>Menu</Link></BreadcrumbItem>
+                            <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
+                        </Breadcrumb>
+                        <div className="col-12">
+                            <h3>{dish.name}</h3><hr/>
+                        </div>
+                        <div className="col-12 col-md-5 m-1">
+                            <RenderCard dish={dish} />
+                        </div>
+                        <div className="col-12 col-md-5 m-1">
+                            <h4>Comments</h4>
+                            <RenderComments comments={comment} />
+                        </div>
                     </div>
                 </div>
             );
         }else{
             return (
-                <div></div>
+                <div>{dish.name}</div>
             );
         }
     }
