@@ -17,16 +17,20 @@ import { Card, CardImg, CardTitle, CardImgOverlay } from 'reactstrap';
     const Menu = (props) => {
         const menu = props.dishes.map((dish) => {
             return (
-              <div key={dish.id} className="col-12 col-md-5 m-1">
-                  <RenderCard dish={dish} onClick={props.onClick} />
-              </div>
+                <div key={dish.id} className="col-12 col-md-5 m-1">
+                    <RenderCard dish={dish} onClick={props.onClick} />
+                </div>
             );
         });
 
         return (
-                <div className="row">
-                    {menu}
+            <div className="container">
+                <div className="offset-md-2">
+                    <div className="row">
+                        {menu}
+                    </div>
                 </div>
+            </div>
         );
     }
 
